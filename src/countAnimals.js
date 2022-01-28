@@ -1,24 +1,22 @@
 const data = require('../data/zoo_data');
 
 const { species } = data;
-console.log(species[0]);
 
 function countAnimals(animal) {
   if (!animal) {
     const newObj = {};
-    species.map((specie) => {
+    species.forEach((specie) => {
       newObj[specie.name] = specie.residents.length;
       return newObj;
     });
     return newObj;
   }
+  const findSpecie = species
+    .find((specie) => specie.name === animal.specie).residents;
   if (!animal.sex) {
-    const findSpecie = species
-      .find((specie) => specie.name === animal.specie);
-    return findSpecie.residents.length;
+    return findSpecie.length;
   }
-  const findSpecieBySex = species
-    .find((specie) => specie.name === animal.specie).residents
+  const findSpecieBySex = findSpecie
     .filter((item) => item.sex === animal.sex);
   return findSpecieBySex.length;
 }
