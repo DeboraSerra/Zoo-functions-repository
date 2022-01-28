@@ -8,19 +8,17 @@ function countEntrants(entrants) {
     adult: 0,
     senior: 0,
   };
-  if (entrants.length > 0) {
-    newObj.child = entrants
-      .filter((item) => item.age < 18).length;
-    newObj.adult = entrants
-      .filter((item) => item.age >= 18 && item.age < 50).length;
-    newObj.senior = entrants
-      .filter((item) => item.age >= 50).length;
-  }
+  newObj.child = entrants
+    .filter((item) => item.age < 18).length;
+  newObj.adult = entrants
+    .filter((item) => item.age >= 18 && item.age < 50).length;
+  newObj.senior = entrants
+    .filter((item) => item.age >= 50).length;
   return newObj;
 }
 
 function calculateEntry(entrants) {
-  if (!entrants || entrants === {}) return 0;
+  if (!entrants || Object.keys(entrants).length === 0) return 0;
   const entries = countEntrants(entrants);
   let total = 0;
   total += entries.child * prices.child;
